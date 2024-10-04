@@ -2,12 +2,12 @@
 #include <vector>
 #include "cartesianTree.hpp"
 
-//example
-// TEST(Dominoes, size1) {
-//   std::vector<int> coordinates = {3};
-//   std::vector<int> heights = {10};
-//   EXPECT_EQ(sleepingDominoes(coordinates, heights), 1);
-// }
+example
+TEST(Tree, Wikipedia) {
+  std::vector<int> arr = {9,3,7,1,8,12,10,20,15,18,5};
+  treeNodeR treeTop = constructRecTree(arr);
+  EXPECT_EQ(sleepingDominoes(arr), arr); // fix naming
+}
 
 
 int main(int argc, char* argv[]) {

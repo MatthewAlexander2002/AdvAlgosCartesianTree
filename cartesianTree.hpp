@@ -4,7 +4,7 @@
 #include <vector>
 
 struct treeNodeR {
-    int currVal;
+    int val;
     treeNodeR* left;
     treeNodeR* right;
 
@@ -16,7 +16,8 @@ struct treeNodeR {
 };
 
 struct treeNodeL {
-    int currVal;
+    int val;
+    treeNodeL* parent; 
     treeNodeL* left;
     treeNodeL* right;
 
