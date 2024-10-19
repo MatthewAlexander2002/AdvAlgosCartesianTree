@@ -2,12 +2,19 @@
 #include "cartesianTree.hpp"
 
 treeNodeR constructRecTree(const std::vector<int>& arr){
-    treeNodeR root;
-    int minValIndex = minValIndex(arr);
+    if (arr.empty()) {
+        return nullptr;
+    }
 
-    root.val = arr[minValIndex];
-    root.left = cartRec(root, arr[0, maxValIndex-1]);
-    root.right = cartRec(root, arr[maxValIndex+1, arr.size()-1]);
+    int minValIndex = MinValIndex(arr);
+    treeNodeR* root = new treeNodeR();
+    root->val = arr[minValIndex];
+
+    std::vector<int> leftArr(arr.begin(), arr.begin() + minValIndex);
+    std::vector<int> rightArr(arr.begin() + minValIndex + 1, arr.end());
+
+    root->left = cartRec(root, leftArr);
+    root->right = cartRec(root, rightArr);
 
     return root;
 }
@@ -17,11 +24,15 @@ treeNodeR cartRec(treeNodeR root, const std::vector<int>& arr){
         return nullptr;
     }
 
-    int maxValIndex = maxValIndex(arr);
-    treeNodeR newNode;
-    newNode.val = arr[maxValIndex];
-    newNode.left = cartRec(newNode, arr[0, maxValIndex-1]);
-    newNode.right = cartRec(newNode, arr[maxValIndex+1, arr.size()]);
+    int minValIndex = MinValIndex(arr);
+    treeNodeR newNode = new treeNodeR();
+    newNode->val = arr[minValIndex];
+
+    std::vector<int> leftArr(arr.begin(), arr.begin() + minValIndex);
+    std::vector<int> rightArr(arr.begin() + minValIndex + 1, arr.end());
+
+    newNode->left = cartRec(newNode, leftArr);
+    newNode->right = cartRec(newNode, rightArr);
 
     return newNode;
 }
@@ -54,19 +65,20 @@ treeNodeR cartRec(treeNodeR root, const std::vector<int>& arr){
 //     }
 //     //copy of arr from 0, index and index to size
 //     cartRec(newRoot, )
-
 //     return newRoot;
 // }
 
-int minValIndex(const std::vector<int>& arr){
-    minVal = arr.begin();
-    minValIndex = 0;
+//finds the minimum value of a sub array
+int MinValIndex(const std::vector<int>& arr){
+    if (arr.empty()) {
+        return -1; 
+    }
 
+    int minValIndex = 0;
     for(int i = 0; i < arr.size(); i++){
-        if(minVal < arr[i]){
-            minVal = arr[i];
+        if(arr[i] < arr[minValIndex]){
             minValIndex = i;
         }
     }
-    return i;
+    return minValIndex;
 }

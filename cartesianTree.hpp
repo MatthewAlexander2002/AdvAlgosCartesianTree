@@ -3,29 +3,44 @@
 
 #include <vector>
 
-struct treeNodeR {
+struct treeNode {
     int val;
-    treeNodeR* left;
-    treeNodeR* right;
+    treeNode* left;
+    treeNode* right;
 
-    treeNodeR(const std::vector<int>& arr);
-
-    void insert(int val);
-
-    void printInOrder();
+    // Constructor
+    treeNode(int value) : val(value), left(nullptr), right(nullptr) {}
 };
 
-struct treeNodeL {
-    int val;
-    treeNodeL* parent; 
-    treeNodeL* left;
-    treeNodeL* right;
+treeNode* constructRecTree(const std::vector<int>& arr);
+treeNode* cartRec(treeNode* root, const std::vector<int>& arr);
+int MinValIndex(const std::vector<int>& arr);
 
-    treeNodeL(const std::vector<int>& arr);
+// struct treeNodeR {
+//     int val;
+//     treeNodeR* left;
+//     treeNodeR* right;
 
-    void insert(int val);
+//     treeNodeR() : val(0), left(nullptr), right(nullptr) {}
 
-    void printInOrder();
-};
+//     treeNodeR(const std::vector<int>& arr);
+
+//     void insert(int val);
+
+//     void printInOrder();
+// };
+
+// struct treeNodeL {
+//     int val;
+//     treeNodeL* parent; 
+//     treeNodeL* left;
+//     treeNodeL* right;
+
+//     treeNodeL(const std::vector<int>& arr);
+
+//     void insert(int val);
+
+//     void printInOrder();
+// };
 
 #endif
