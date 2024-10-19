@@ -15,6 +15,7 @@ struct treeNode {
 treeNode* constructRecTree(const std::vector<int>& arr);
 treeNode* cartRec(treeNode* root, const std::vector<int>& arr);
 int MinValIndex(const std::vector<int>& arr);
+std::vector<int> treeToVector(treeNode* root);
 
 // struct treeNodeR {
 //     int val;
