@@ -13,14 +13,14 @@ treeNode* constructRecTree(const std::vector<int>& arr){
     std::vector<int> leftArr(arr.begin(), arr.begin() + minValIndex);
     std::vector<int> rightArr(arr.begin() + minValIndex + 1, arr.end());
 
-    root->left = cartRec(root, leftArr);
-    root->right = cartRec(root, rightArr);
+    root->left = cartRec(leftArr);
+    root->right = cartRec(rightArr);
 
     return root;
 }
 
 //recursively constructs the nodes of the tree
-treeNode* cartRec(treeNode* root, const std::vector<int>& arr){
+treeNode* cartRec(const std::vector<int>& arr){
     if(arr.size() == 0){
         return nullptr;
     }
@@ -31,8 +31,8 @@ treeNode* cartRec(treeNode* root, const std::vector<int>& arr){
     std::vector<int> leftArr(arr.begin(), arr.begin() + minValIndex);
     std::vector<int> rightArr(arr.begin() + minValIndex + 1, arr.end());
 
-    newNode->left = cartRec(newNode, leftArr);
-    newNode->right = cartRec(newNode, rightArr);
+    newNode->left = cartRec(leftArr);
+    newNode->right = cartRec(rightArr);
 
     return newNode;
 }
@@ -44,7 +44,7 @@ int MinValIndex(const std::vector<int>& arr){
     }
 
     int minValIndex = 0;
-    for(int i = 0; i < arr.size(); i++){
+    for (std::vector<int>::size_type i = 0; i < arr.size(); i++){
         if(arr[i] < arr[minValIndex]){
             minValIndex = i;
         }
