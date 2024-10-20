@@ -1,3 +1,0 @@
-/home/matthew/Documents/UNI/Sem 6/41052_Adv_Algos/Assignments/AdvAlgosCartesianTree/build/CMakeFiles/main.dir
-/home/matthew/Documents/UNI/Sem 6/41052_Adv_Algos/Assignments/AdvAlgosCartesianTree/build/CMakeFiles/edit_cache.dir
-/home/matthew/Documents/UNI/Sem 6/41052_Adv_Algos/Assignments/AdvAlgosCartesianTree/build/CMakeFiles/rebuild_cache.dir
