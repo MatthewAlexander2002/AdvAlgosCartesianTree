@@ -1,25 +1,62 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 #include "cartesianTree.hpp"
 
-void printTree(treeNode* root, int indent = 0) {
+int treeWidth(treeNode* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int leftWidth = treeWidth(root->left);
+    int rightWidth = treeWidth(root->right);
+    return 1 + leftWidth + rightWidth;
+}
+
+// Function to calculate the height of the tree
+int treeHeight(treeNode* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return 1 + std::max(treeHeight(root->left), treeHeight(root->right));
+}
+
+// Helper function to print spaces for alignment
+void printSpaces(int count) {
+    for (int i = 0; i < count; i++) {
+        std::cout << " ";
+    }
+}
+
+// Recursive function to print the tree
+void printTreeHelper(treeNode* root, int depth, int offset, int totalWidth) {
     if (root == nullptr) {
         return;
     }
-    
-    // Print the right subtree first (for a clearer horizontal structure)
-    printTree(root->right, indent + 4);
 
-    // Print the current node
-    if (indent) {
-        std::cout << std::setw(indent) << ' ';
-    }
+    // Calculate the position for the current node
+    int nodePosition = offset + totalWidth / 2;
+
+    // Print leading spaces to position the current node
+    printSpaces(nodePosition);
     std::cout << root->val << std::endl;
 
-    // Print the left subtree
-    printTree(root->left, indent + 4);
+    // Recursively print left and right children with adjusted positions
+    if (root->left) {
+        printTreeHelper(root->left, depth + 1, offset, totalWidth / 2);
+    }
+    if (root->right) {
+        printTreeHelper(root->right, depth + 1, offset + totalWidth / 2, totalWidth / 2);
+    }
 }
+
+// Main function to print the tree in a centered format
+void printCenteredTree(treeNode* root) {
+    int width = treeWidth(root) * 4;  // Adjust the multiplier for proper spacing
+    printTreeHelper(root, 0, 0, width);
+}
+
+
 
 treeNode* testTree(std::vector<int> arr){
     treeNode* root = constructRecTree(arr);
@@ -89,7 +126,7 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Cartesian Tree Structure:" << std::endl;
-    printTree(testRoot);
+    printCenteredTree(testRoot);
 
     return 0;
 }
