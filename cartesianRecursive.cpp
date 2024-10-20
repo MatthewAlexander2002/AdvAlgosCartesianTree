@@ -52,6 +52,7 @@ int MinValIndex(const std::vector<int>& arr){
     return minValIndex;
 }
 
+//recursively finds the all of the elements to reconstruct the array
 void treeToVectorHelper(treeNode* root, std::vector<int>& result) {
     if (root == nullptr) {
         return;
